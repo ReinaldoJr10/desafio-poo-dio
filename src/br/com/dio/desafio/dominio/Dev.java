@@ -3,9 +3,14 @@ package br.com.dio.desafio.dominio;
 import java.util.*;
 
 public class Dev {
+
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+
+    public Dev(String nome){
+        this.nome=nome;
+    }
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -31,10 +36,6 @@ public class Dev {
         }
         return soma;
 
-        /*return this.conteudosConcluidos
-                .stream()
-                .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
     }
 
 
@@ -60,6 +61,14 @@ public class Dev {
 
     public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
         this.conteudosConcluidos = conteudosConcluidos;
+    }
+
+    public void resumoConteudos(){
+        System.out.println("---------------------------------------------------");
+        System.out.println("Conteúdos Inscritos "+this.nome+":" + this.getConteudosInscritos());
+        System.out.println("Conteúdos Concluídos "+this.nome+":" + this.getConteudosConcluidos());
+        System.out.println("XP:" + this.calcularTotalXp());
+        System.out.println("---------------------------------------------------");
     }
 
     @Override
